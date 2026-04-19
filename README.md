@@ -45,7 +45,7 @@ First, clone the repository and switch to the `node` branch:
 
 ```bash
 git clone <your-repo-url>
-cd event-booking-system
+cd cactro-19-4-2026
 git checkout node
 npm install
 npm run build
