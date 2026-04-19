@@ -1,0 +1,95 @@
+### --- CONFIGURATION ---
+@baseUrl = http://localhost:3000
+
+
+### ==========================================
+### 1. AUTHENTICATION
+### ==========================================
+POST {{baseUrl}}/auth/signup
+Content-Type: application/json
+
+{
+    "email": "customer_00@test.com",
+    "password": "password123",
+    "role": "CUSTOMER"
+}
+
+###
+POST {{baseUrl}}/auth/login
+Content-Type: application/json
+
+{
+    "email": "customer_00@test.com",
+    "password": "password123"
+}
+
+###
+POST {{baseUrl}}/auth/logout
+
+### ==========================================
+### 2. ORGANIZER ACTIONS
+### ==========================================
+
+### Create a New Event
+# This triggers the 'action' in routes/api/events-list.ts
+POST {{baseUrl}}/api/events/create
+Content-Type: application/json
+
+{
+    "title": "a film workshop",
+    "description": "lorem ipsum"
+}
+
+###
+
+### Update Event Details
+# Triggers Background Task 2: Event Update Notification
+# Only notifies users who have already booked this specific event.
+PATCH {{baseUrl}}/api/events/evt-103
+Content-Type: application/json
+
+{
+    "title": "React Router v7 Workshop (RESCHEDULED)",
+    "description": "Updated: We are moving to a larger virtual room."
+}
+
+
+### ==========================================
+### 3. CUSTOMER ACTIONS
+### ==========================================
+
+### Browse All Events
+# Triggers the 'loader' in routes/api/events-list.ts
+GET {{baseUrl}}/api/events
+Accept: application/json
+
+###
+
+### View Specific Event Detail
+# Triggers the 'loader' in routes/api/event-detail.ts
+GET {{baseUrl}}/api/events/evt-103
+Accept: application/json
+
+###
+
+### Book a Ticket
+# Triggers Background Task 1: Booking Confirmation Email
+# Role Guard ensures only CUSTOMER can perform this.
+POST {{baseUrl}}/api/events/evt-103/book
+Content-Type: application/json
+
+
+###
+
+### View My Bookings
+# Returns enriched booking data (Event Titles + Booking IDs)
+GET {{baseUrl}}/api/me/bookings
+Accept: application/json
+
+
+### ==========================================
+### 4. SYSTEM TEST
+### ==========================================
+
+### Health Check / Moo
+GET {{baseUrl}}/moo

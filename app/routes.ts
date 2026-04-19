@@ -17,7 +17,8 @@ export default [
 
         route("events/:id", "./routes/api/event-detail.ts"), // View/Update
 
-        route("events/:id/book", "./routes/api/book-ticket.ts") // Booking
-
+        route("events/:id/book", "./routes/api/book-ticket.ts"), // Booking
+        route("events/create", "./routes/api/event-creation.ts"),
+        route("me/bookings", "./routes/api/bookings.ts")
     ])
 ] satisfies RouteConfig;
