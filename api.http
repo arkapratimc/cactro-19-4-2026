@@ -9,7 +9,7 @@ POST {{baseUrl}}/auth/signup
 Content-Type: application/json
 
 {
-    "email": "customer_00@test.com",
+    "email": "customer_003@test.com",
     "password": "password123",
     "role": "CUSTOMER"
 }
@@ -19,7 +19,7 @@ POST {{baseUrl}}/auth/login
 Content-Type: application/json
 
 {
-    "email": "customer_00@test.com",
+    "email": "customer_003@test.com",
     "password": "password123"
 }
 
@@ -36,7 +36,7 @@ POST {{baseUrl}}/api/events/create
 Content-Type: application/json
 
 {
-    "title": "a film workshop",
+    "title": "a film workshop for students",
     "description": "lorem ipsum"
 }
 
