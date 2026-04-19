@@ -21,16 +21,39 @@ This document outlines the backend API structure for the Event Booking System, b
 
 The system utilizes a non-blocking `jobQueue` to handle long-running processes, ensuring the API remains responsive.
 
-### Background Task 1: Booking Confirmation
-- **Trigger:** Successful ticket booking via `POST /api/events/:id/book`.
-- **Action:** Simulates sending a confirmation email to the customer.
-- **Log Example:** `[Job Queue]: Sending booking confirmation email to customer@test.com for event "Tech Global Summit 2026"`
+# Local Development Setup
 
-### Background Task 2: Event Update Notification
-- **Trigger:** Event modification via `PATCH /api/events/:id`.
-- **Action:** Notifies all customers who have already booked a ticket for that specific event.
-- **Log Example:** `[Job Queue]: Notifying 15 attendees that event "React Router Workshop" has been rescheduled.`
+This project uses a branch-based strategy for deployment and local development. 
+- **main**: Production code configured for Vercel.
+- **node**: Development code configured for local execution.
 
-## 3. Data Logic
-- **Auto-Increment IDs:** Events are assigned IDs using the pattern `evt-XXX` by calculating the maximum existing ID in the system.
-- **Security:** Role-based access is strictly enforced using `getUserFromCookie`. If a Customer attempts to access an Organizer route, a `403 Forbidden` response is returned.
+---
+
+## 🛠 Prerequisites
+
+Before starting, ensure you have the following installed:
+* **Node.js** (v18 or higher recommended)
+* **npm** or **pnpm**
+* **VS Code** (with the [REST Client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client) extension for testing)
+
+---
+
+## 🚀 Getting Started
+
+### 1. Clone and Switch Branch
+First, clone the repository and switch to the `node` branch:
+
+```bash
+git clone <your-repo-url>
+cd event-booking-system
+git checkout node
+npm install
+npm run build
+npm run start
+```
+
+🧪 Testing the APIs
+1. Open the api.http file located in the root directory.
+2. Ensure the @baseUrl variable is set to http://localhost:3000.
+3. Click the "Send Request" link above any endpoint to execute it.
+4. Check your terminal/console to see the Background Task logs (Emails and Notifications).
