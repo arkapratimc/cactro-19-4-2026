@@ -1,5 +1,5 @@
 ### --- CONFIGURATION ---
-@baseUrl = http://localhost:3000
+@baseUrl = https://cactro-19-4-2026.vercel.app
 
 
 ### ==========================================
